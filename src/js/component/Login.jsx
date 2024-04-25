@@ -7,7 +7,7 @@ export const Login = () => {
   const [select, setSelect] = useState('')
 
   const handleEmail = (element) => {
-    setEmail(element.target.value)
+    setEmail(element.target.value.trim())
   }
 
   const handlePassword = (e) => {
@@ -41,9 +41,9 @@ export const Login = () => {
   return (
     <div>
       <form>
-        <div className="mb-3 mt-5">
+        <div className="mb-3 ">
           <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-          <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={email} onChange={handleEmail} />
+          <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={email} onChange={handleEmail} />
           <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
         </div>
 
