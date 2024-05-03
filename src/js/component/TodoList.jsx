@@ -1,9 +1,36 @@
 import { string } from "prop-types";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Alert } from "./Alert.jsx";
 
 export const TodoList = () => {
     //1.Js
+    const getList = async () => {
+        const uri = 'https://playground.4geeks.com/todo/users'
+        const options = {
+            method: 'GET'
+        }
+        const response = await fetch(uri, options)
+        console.log(response)
+
+        if (!response.ok) {
+            // Trato el error para que me diga el estado. y se hace diciendo que si no es ok. O sea que si no es un 200
+            console.log('error:',response.ok, response.status, response.statusText);
+          
+            return // siempre hay que poner el return siempre para que salga de la función y no siga ejecutandose. Si lo quitamos se sigue ejectuando el if, y pasa al siguiente comprobante. 
+        }
+        console.log('si no pongo el return, yo me estoy');
+        console.log(response);
+        const data = await response.json()
+        console.log(data);
+    }
+
+    useEffect(() => {
+        getList();
+    }
+        , [])
+
+
+
     const [task, setTask] = useState('')
     const [list, setList] = useState(['manzana', 'pera', 'platano', 'kiwi'])
     const [showAlert, setShowAlert] = useState(false)
